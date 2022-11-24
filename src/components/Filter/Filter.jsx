@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 const Filter = ({ value, onChange }) => (
   <Label htmlFor="filter">
     Find contacts by name:
-    <Input name="filter" type="text" value={value} onChange={onChange} />
+    <Input
+      name="filter"
+      type="text"
+      value={value}
+      onChange={e => onChange(e.target.value)}
+    />
   </Label>
 );
 

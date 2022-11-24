@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import shortid from 'shortid';
 import { FormContainer, Input, Button, Label } from './ContactForm.styled';
 import PropTypes from 'prop-types';
 
@@ -7,24 +6,11 @@ const ContactForm = ({ contacts, onFormSubmit }) => {
   const initialValues = {
     name: '',
     number: '',
-    id: '',
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    const id = shortid.generate();
-    const newValues = { ...values, id: id };
-    if (contacts.length === 0) {
-      contacts.push(newValues);
-    } else {
-      for (let contact of contacts) {
-        if (newValues.name.toLowerCase() === contact.name.toLowerCase()) {
-          return alert(`${newValues.name} is already in contacts`);
-        }
-      }
-      contacts.push(newValues);
-    }
     resetForm();
-    onFormSubmit(newValues);
+    onFormSubmit(values);
   };
 
   return (
@@ -62,7 +48,6 @@ ContactForm.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
     })
   ).isRequired,
   onFormSubmit: PropTypes.func.isRequired,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ContactList = ({ listContacts, handleCLick }) => {
   return (
     <ContactsList>
-      {listContacts.map(({ name, id, number }) => {
+      {listContacts.map(({ id, name, number }) => {
         return (
           <ContactItem
             key={id}
